@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -32,10 +33,13 @@ public class Country {
 	@Column(name="surfacearea")
 	private float surface;
 	
-	@JoinColumn(name = "padre_id") 
-     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // OneToMany è il tipo di relazione
+	@Column(name="Capital")
+	private Long capital;
+	
+	/*@OneToMany(targetEntity=)
+    private List<City> citys;*/
 
-    private List<City> city;
+    
 
 	public String getCode() {
 		return code;
@@ -76,6 +80,15 @@ public class Country {
 	public void setSurface(float surface) {
 		this.surface = surface;
 	}
+
+	public Long getCapital() {
+		return capital;
+	}
+
+	public void setCapital(Long capital) {
+		this.capital = capital;
+	}
+	
 	
 }
 

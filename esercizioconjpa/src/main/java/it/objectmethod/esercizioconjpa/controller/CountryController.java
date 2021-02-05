@@ -1,5 +1,7 @@
 package it.objectmethod.esercizioconjpa.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,14 @@ public class CountryController {
 	public Country test(@RequestParam("Name") String name,@RequestParam("Continent") String continent) {
 		Country country=countryRepo.findByNameAndContinent(name, continent);
 		System.out.println(country);
+		return  country;
+		
+	}
+	
+	@GetMapping("g")
+	public List<Country> test() {
+		List<Country> country=countryRepo.getCountryByName();
+		
 		return  country;
 		
 	}

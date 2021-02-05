@@ -1,4 +1,6 @@
 package it.objectmethod.esercizioconjpa.repository;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -11,8 +13,11 @@ public interface CountryRepo extends JpaRepository<Country,String>{
 	public Country findByNameAndContinent(String name,String continent);
 	
 	
-	@Query("select c from Country c join City a on c.code = a.country where c.code = ?1")
-	public Country getCountryByCountryCity(String codeCity);
+	@Query(value="SELECT * FROM country\r\n"
+			+ "INNER JOIN city ON country.Capital = city.ID\r\n"
+			+ "WHERE city.Population > 1000000" ,
+			nativeQuery=true)
+	public List<Country> getCountryByName();
 }
 
 
