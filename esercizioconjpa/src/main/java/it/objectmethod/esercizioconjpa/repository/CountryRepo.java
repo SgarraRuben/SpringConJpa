@@ -17,7 +17,13 @@ public interface CountryRepo extends JpaRepository<Country,String>{
 			+ "INNER JOIN city ON country.Capital = city.ID\r\n"
 			+ "WHERE city.Population > 1000000" ,
 			nativeQuery=true)
-	public List<Country> getCountryByName();
+	public List<Country> getCountry();
+	
+	@Query(value="SELECT coutnry.Name FROM country\r\n"
+			+ "INNER JOIN city ON country.Capital = city.ID\r\n"
+			+ "WHERE city.Population > 1000000" ,
+			nativeQuery=true)
+	public List<String> getCountryName();
 	
 	
 }

@@ -25,9 +25,16 @@ public class CountryController {
 
 	}
 
-	@GetMapping("g")
-	public List<Country> test() {
-		List<Country> country = countryRepo.getCountryByName();
+	@GetMapping("/getCountry")
+	public List<Country> getCountry() {
+		List<Country> country = countryRepo.getCountry();
+
+		return country;
+
+	}
+	@GetMapping("/getOnlyName")
+	public List<String> test() {
+		List<String> country = countryRepo.getCountryName();
 
 		return country;
 
