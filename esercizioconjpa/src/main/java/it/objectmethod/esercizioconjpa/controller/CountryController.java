@@ -39,5 +39,13 @@ public class CountryController {
 		return country;
 
 	}
+	
+	@GetMapping("/getOnlyNameAndCountry")
+	public List<String> set() {
+		List<String> country = countryRepo.getCountryNameCity();
+
+		return country;
+
+	}
 
 }
