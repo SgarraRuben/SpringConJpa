@@ -18,6 +18,8 @@ public interface CountryRepo extends JpaRepository<Country,String>{
 			+ "WHERE city.Population > 1000000" ,
 			nativeQuery=true)
 	public List<Country> getCountryByName();
+	
+	
 }
 
 

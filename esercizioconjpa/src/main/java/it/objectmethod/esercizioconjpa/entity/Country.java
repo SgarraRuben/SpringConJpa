@@ -1,45 +1,38 @@
 package it.objectmethod.esercizioconjpa.entity;
 
-import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column; 
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="country")
+@Table(name = "country")
 public class Country {
-	
+
 	@Id
-	@Column(name="Code")
+	@Column(name = "Code")
 	private String code;
-	
-	@Column(name="Name")
+
+	@Column(name = "Name")
 	private String name;
 
-	@Column(name="Continent")
+	@Column(name = "Continent")
 	private String continent;
-	
-	@Column(name="Population")
-	private Integer population;
-	
-	@Column(name="surfacearea")
-	private float surface;
-	
-	@Column(name="Capital")
-	private Long capital;
-	
-	/*@OneToMany(targetEntity=)
-    private List<City> citys;*/
 
-    
+	@Column(name = "Population")
+	private Integer population;
+
+	@Column(name = "surfacearea")
+	private float surface;
+
+	@Column(name = "Capital")
+	private Long capital;
+
+	/*
+	 * @OneToMany(targetEntity=) private List<City> citys;
+	 */
 
 	public String getCode() {
 		return code;
@@ -88,7 +81,5 @@ public class Country {
 	public void setCapital(Long capital) {
 		this.capital = capital;
 	}
-	
-	
-}
 
+}
