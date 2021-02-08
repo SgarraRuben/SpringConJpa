@@ -1,11 +1,17 @@
 package it.objectmethod.esercizioconjpa.entity;
 
+import java.util.List; 
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "country")
@@ -29,10 +35,11 @@ public class Country {
 
 	@Column(name = "Capital")
 	private Long capital;
+	
+	@JoinColumn(name = "countrycode")
+@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL) 
 
-	/*
-	 * @OneToMany(targetEntity=) private List<City> citys;
-	 */
+private List<City> city;
 
 	public String getCode() {
 		return code;
