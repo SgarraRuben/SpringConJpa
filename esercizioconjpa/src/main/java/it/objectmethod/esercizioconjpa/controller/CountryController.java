@@ -1,6 +1,5 @@
-package it.objectmethod.esercizioconjpa.controller; 
+package it.objectmethod.esercizioconjpa.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.objectmethod.esercizioconjpa.entity.City;
 import it.objectmethod.esercizioconjpa.entity.Country;
-import it.objectmethod.esercizioconjpa.repository.CityRepo;
 import it.objectmethod.esercizioconjpa.repository.CountryRepo;
 
 @RestController
@@ -21,21 +18,15 @@ import it.objectmethod.esercizioconjpa.repository.CountryRepo;
 public class CountryController {
 	@Autowired
 	private CountryRepo countryRepo;
-	@Autowired
-	private CityRepo cityRepo;
-	
-	
+
 	@GetMapping("/{code}/find")
-	public  Optional<Country> findById(@PathVariable("code") String code) {
+	public Optional<Country> findById(@PathVariable("code") String code) {
 		Optional<Country> c = countryRepo.findById(code);
-		
-					
-				
-		
-		
-		
-;		return c;
+
+		;
+		return c;
 	}
+
 	@GetMapping("/findName")
 	public Country test(@RequestParam("Name") String name, @RequestParam("Continent") String continent) {
 		Country country = countryRepo.findByNameAndContinent(name, continent);
@@ -51,6 +42,7 @@ public class CountryController {
 		return country;
 
 	}
+
 	@GetMapping("/getOnlyName")
 	public List<String> test() {
 		List<String> country = countryRepo.getCountryName();
@@ -58,7 +50,7 @@ public class CountryController {
 		return country;
 
 	}
-	
+
 	@GetMapping("/getOnlyNameAndCountry")
 	public List<String> set() {
 		List<String> country = countryRepo.getCountryNameCity();

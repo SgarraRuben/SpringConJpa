@@ -2,12 +2,9 @@ package it.objectmethod.esercizioconjpa.entity;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -34,8 +31,7 @@ public class Country {
 	@Column(name = "Capital")
 	private Long capital;
 
-	
-	@OneToMany(mappedBy="country")
+	@OneToMany(mappedBy = "country")
 	private List<City> city;
 
 	public String getCode() {
@@ -93,6 +89,5 @@ public class Country {
 	public void setCity(List<City> city) {
 		this.city = city;
 	}
-	
 
 }

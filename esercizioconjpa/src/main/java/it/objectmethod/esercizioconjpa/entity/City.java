@@ -1,20 +1,17 @@
 package it.objectmethod.esercizioconjpa.entity;
 
+import java.util.List;
 
-
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -24,15 +21,13 @@ public class City {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	@Column(name = "ID")
 	private Long id;
 
 	@Column(name = "Name")
 	private String name;
-	
-	
-	@Column(name = "CountryCode")
-	
+
+	//@Column(name = "CountryCode")
+
 	private String countryCode;
 
 	public String getCountryCode() {
@@ -48,12 +43,21 @@ public class City {
 
 	@Column(name = "Population")
 	private Integer population;
-	
+
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "CountryCode")
-	
+
 	private Country country;
+
+	@ManyToMany
+	@JoinTable(name = "city_tp", joinColumns = @JoinColumn(name = "id_city", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "Id_trasporti", referencedColumnName = "ServiziID"))
+	// padri_auto tabella di correlazione tra padre e automobile, nelle joinColumns
+	// indichiamo che padre_id (della tabella padri_auto) fa riferimo a id (della
+	// tabella padre)
+	// mentre in inverseJoinColumns indichiamo che auto_id (della tabella
+	// padri_auto) fa riferimento a id (della tabella automobile).
+	private List<TrasportiPubblici> trasportiPubblici;
 
 	public String getName() {
 		return name;
@@ -70,9 +74,6 @@ public class City {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	
-	
 
 	public String getDistrict() {
 		return district;
@@ -96,8 +97,15 @@ public class City {
 
 	public void setCountry(Country country) {
 		this.country = country;
-	
-	
 
-}
+	}
+
+	public List<TrasportiPubblici> getTrasportiPubblici() {
+		return trasportiPubblici;
+	}
+
+	public void setTrasportiPubblici(List<TrasportiPubblici> trasportiPubblici) {
+		this.trasportiPubblici = trasportiPubblici;
+	}
+
 }
