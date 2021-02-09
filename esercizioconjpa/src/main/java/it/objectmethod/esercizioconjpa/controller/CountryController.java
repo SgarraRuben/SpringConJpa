@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.objectmethod.esercizioconjpa.entity.City;
 import it.objectmethod.esercizioconjpa.entity.Country;
+import it.objectmethod.esercizioconjpa.repository.CityRepo;
 import it.objectmethod.esercizioconjpa.repository.CountryRepo;
 
 @RestController
@@ -20,11 +21,16 @@ import it.objectmethod.esercizioconjpa.repository.CountryRepo;
 public class CountryController {
 	@Autowired
 	private CountryRepo countryRepo;
+	@Autowired
+	private CityRepo cityRepo;
 	
 	
 	@GetMapping("/{code}/find")
 	public  Optional<Country> findById(@PathVariable("code") String code) {
 		Optional<Country> c = countryRepo.findById(code);
+		
+					
+				
 		
 		
 		

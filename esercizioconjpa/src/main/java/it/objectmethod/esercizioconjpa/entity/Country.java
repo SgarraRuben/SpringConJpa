@@ -1,6 +1,6 @@
 package it.objectmethod.esercizioconjpa.entity;
 
-import java.util.List; 
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-
 
 @Entity
 @Table(name = "country")
@@ -35,11 +33,10 @@ public class Country {
 
 	@Column(name = "Capital")
 	private Long capital;
-	
-	@JoinColumn(name = "countrycode")
-@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL) 
 
-private List<City> city;
+	
+	@OneToMany(mappedBy="country")
+	private List<City> city;
 
 	public String getCode() {
 		return code;
@@ -88,5 +85,14 @@ private List<City> city;
 	public void setCapital(Long capital) {
 		this.capital = capital;
 	}
+
+	public List<City> getCity() {
+		return city;
+	}
+
+	public void setCity(List<City> city) {
+		this.city = city;
+	}
+	
 
 }

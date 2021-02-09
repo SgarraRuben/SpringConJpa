@@ -3,6 +3,7 @@ package it.objectmethod.esercizioconjpa.entity;
 
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,8 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,15 +29,18 @@ public class City {
 
 	@Column(name = "Name")
 	private String name;
-	@Column(name = "countrycode")
-	private String codeCountry;
+	
+	
+	@Column(name = "CountryCode")
+	
+	private String countryCode;
 
-	public String getCodeCountry() {
-		return codeCountry;
+	public String getCountryCode() {
+		return countryCode;
 	}
 
-	public void setCodeCountry(String codeCountry) {
-		this.codeCountry = codeCountry;
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
 	}
 
 	@Column(name = "District")
@@ -46,9 +49,10 @@ public class City {
 	@Column(name = "Population")
 	private Integer population;
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "CountryCode")
 	
-	@JsonIgnore //Questa proprieta viene ignorata quando inviamo il JSON al frontend
-	@ManyToOne(fetch = FetchType.LAZY)
 	private Country country;
 
 	public String getName() {
@@ -92,7 +96,8 @@ public class City {
 
 	public void setCountry(Country country) {
 		this.country = country;
-	}
+	
 	
 
+}
 }
